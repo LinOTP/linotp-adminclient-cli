@@ -54,10 +54,14 @@ setup(
     author_email='linotp@keyidentity.com',
     url='https://www.linotp.org',
     packages=['linotpadminclientcli'],
-    scripts=['bin/linotpadm.py'],
      data_files=[('share/man/man1', ["doc/linotpadm.py.1"])],
 #    data_files=[('/usr/lib/python2.6/site-packages/',['linotp2-client.pth']),
 #       ],
     license='AGPLv3, (C) KeyIdentity GmbH',
-    long_description=get_file_contents('DESCRIPTION')
+    long_description=get_file_contents('DESCRIPTION'),
+    entry_points={
+        'console_scripts': [
+            'linotpadm = linotpadminclientcli.cli:main',
+        ],
+    },
 )

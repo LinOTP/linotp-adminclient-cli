@@ -36,6 +36,12 @@ from linotpadminclientcli import __version__
 # Taken from kennethreitz/requests/setup.py
 package_directory = os.path.realpath(os.path.dirname(__file__))
 
+yubico_requirements = [
+    'pyusb',
+    'yubico',
+]
+
+
 def get_file_contents(file_path):
     """Get the context of the file using full path name."""
     content = ""
@@ -54,6 +60,9 @@ setup(
     author_email='linotp@keyidentity.com',
     url='https://www.linotp.org',
     packages=['linotpadminclientcli'],
+    extras_require={
+        'yubico': yubico_requirements,
+    },
      data_files=[('share/man/man1', ["doc/linotpadm.py.1"])],
 #    data_files=[('/usr/lib/python2.6/site-packages/',['linotp2-client.pth']),
 #       ],

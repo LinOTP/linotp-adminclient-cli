@@ -63,7 +63,7 @@ setup(
     extras_require={
         'yubico': yubico_requirements,
     },
-     data_files=[('share/man/man1', ["doc/linotpadm.py.1"])],
+    data_files=[('share/man/man1', ["man/man1/linotpadm.1"])],
 #    data_files=[('/usr/lib/python2.6/site-packages/',['linotp2-client.pth']),
 #       ],
     license='AGPLv3, (C) KeyIdentity GmbH',

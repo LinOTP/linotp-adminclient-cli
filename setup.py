@@ -67,7 +67,7 @@ setup(
 #    data_files=[('/usr/lib/python2.6/site-packages/',['linotp2-client.pth']),
 #       ],
     license='AGPLv3, (C) KeyIdentity GmbH',
-    long_description=get_file_contents('DESCRIPTION'),
+    long_description=get_file_contents('README.md'),
     entry_points={
         'console_scripts': [
             'linotpadm = linotpadminclientcli.cli:main',

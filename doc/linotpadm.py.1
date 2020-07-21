@@ -21,15 +21,16 @@
 .\"   Contact: www.linotp.org
 .\"   Support: www.keyidentity.com
 .\"
-.\" Manpage for linotpadm.py.
+.\" Manpage for linotpadm.
 .\" Contact linotp@keyidentity.com for any feedback.
-.TH man 1 "02 Jul 2010" "2.2" "linotpadm.py man page"
+.TH linotpadm 1 "02 Jul 2010" "3.0" "LinOTP"
 .SH NAME
-linotpadm.py \- manage the KeyIdentity LinOTP server and OTP tokens.
+linotpadm \- manage the LinOTP server and OTP tokens.
 .SH SYNOPSIS
-linotpadm.py --url=<linotpserver> [ --admin=<adminuser> ] --command=<commands> [ command options ]
+linotpadm --url=<linotpserver> [ --admin=<adminuser> ] --command=<commands> [ command options ]
 .SH DESCRIPTION
-linotpadm.py is the command line client to manage the KeyIdentity LinOTP server. The LinOTP server is an authentication backend, that can handle many different OTP (one time password) tokens.
+.PP
+\fBlinotpadm\fR is the command line client to manage the LinOTP server. The LinOTP server is an authentication backend, that can handle many different OTP (one time password) tokens.
 .SH COMMON OPTIONS
 .PP
 \fB\--url=<server> \fR
@@ -97,6 +98,7 @@ Specify which command you want to execute on the LinOTP server. A list of all co
 .RE
 
 .SH TOKEN MANAGEMENT COMMANDS
+.PP
 The LinOTP server accepts many different commands that
 can be sent to the server using this management client.
 Each command can take several arguments. These are described in
@@ -213,6 +215,7 @@ This can be used to set a single config value like
 
 
 .SH REALM AND RESOLVER CONFIGURATION COMMANDS
+.PP
 A LinOTP server may have several UserIdResolvers configured.
 A UserIdResolver tells the LinOTP server, where the users are
 stored. This can be flat files on the LinOTP server, SQL servers or
@@ -436,56 +439,56 @@ Resolver LDAP: the attribute mapping. Something like:
 To list all know users you may issue a command like this:
 .RS 4
 \fB
-linotpadm.py --url=https://localhost:443 --admin=admin --command=listtoken
+linotpadm --url=https://localhost:443 --admin=admin --command=listtoken
 .RE
 
 .PP
 To import an XML file to your server, you need to do the following:
 .RS 4
 \fB
-linotpadm.py --url=https://localhost:443 --admin=admin --command=importtoken --file=mytoken.xml
+linotpadm --url=https://localhost:443 --admin=admin --command=importtoken --file=mytoken.xml
 .RE
 
 .PP
 To enroll a pytoken and assign it to the user 'hans' do this. This will output a python script (the pytoken) to stdout. The token will be assigned to the user 'hans' and when the token is used, the counter will we written to his home directory.
 .RS 4
 \fB
-linotpadm.py --url=https://localhost:443 --admin=admin --command=inittoken --user=hans --pytokeni
+linotpadm --url=https://localhost:443 --admin=admin --command=inittoken --user=hans --pytokeni
 .RE
 
 .PP
 To enroll an eToken NG OTP and assign it to 'hans' do this. The serial number will be read from the smartcard of the eToken NG OTP.
 .RS 4
 \fB
-linotpadm.py --url=https://localhost:443 --admin=admin --command=inittoken --user=hans --etng
+linotpadm --url=https://localhost:443 --admin=admin --command=inittoken --user=hans --etng
 .RE
 
 .PP
 To set the OTP PIN to 'test' for a token with the serial number 003e7e4e do this:
 .RS 4
 \fB
-linotpadm.py --url=https://localhost:443 --admin=admin --command=set --serial=003e7e4e --pin=test
+linotpadm --url=https://localhost:443 --admin=admin --command=set --serial=003e7e4e --pin=test
 .RE
 
 .PP
 To set a new LDAP UserIdResolver, that contacts an LDAP server on 172.16.200.1 you could do it like this:
 .RS 4
 \fB
-linotpadm.py --url=https://localhost:443 --admin=admin --command=setresolver --resolver=newldap --rtype=LDAP --rl_uri='ldaps://172.16.200.1' --rl_basedn='dc=az,dc=local' --rl_binddn='cn=admin,dc=az,dc=local' --rl_bindpw='guessWhat' --rl_timeout=5  --rl_loginattr=uid --rl_searchfilter='(uid=*)(ObejctClass=inetOrgPerson)' --rl_userfilter='(&(uid=%s)(ObjectClass=inetOrgPerson))' --rl_attrmap='{ "username": "uid", "phone" : "telephoneNumber", "groups" : "o", "mobile" : "mobile", "email" : "mail", "surname" : "sn", "givenname" : "givenName" }'
+linotpadm --url=https://localhost:443 --admin=admin --command=setresolver --resolver=newldap --rtype=LDAP --rl_uri='ldaps://172.16.200.1' --rl_basedn='dc=az,dc=local' --rl_binddn='cn=admin,dc=az,dc=local' --rl_bindpw='guessWhat' --rl_timeout=5  --rl_loginattr=uid --rl_searchfilter='(uid=*)(ObejctClass=inetOrgPerson)' --rl_userfilter='(&(uid=%s)(ObjectClass=inetOrgPerson))' --rl_attrmap='{ "username": "uid", "phone" : "telephoneNumber", "groups" : "o", "mobile" : "mobile", "email" : "mail", "surname" : "sn", "givenname" : "givenName" }'
 .RE
 
 .PP
 Now you might want to add this UserIdResolver do a realm:
 .RS 4
 \fB
-linotpadm.py --url=https://localhost:443 --admin=admin --command=setrealm --realm=myRealm --resolver='useridresolver.LDAPIdResolver.IdResolver.newldap'
+linotpadm --url=https://localhost:443 --admin=admin --command=setrealm --realm=myRealm --resolver='useridresolver.LDAPIdResolver.IdResolver.newldap'
 .RE
 
 .PP
 If you want to make the new realm 'myRealm' the default realm do this:
 .RS 4
 \fB
-linotpadm.py --url=https://localhost:443 --admin=admin --command=setdefaultrealm --realm=myRealm
+linotpadm --url=https://localhost:443 --admin=admin --command=setdefaultrealm --realm=myRealm
 .RE
 
 .SH CONFIG FILE EXAMPLE
@@ -526,10 +529,13 @@ cifs_password=<password>
 .RE
 
 .SH INTERNET SOURCES
+.PP
 https://www.linotp.org,  https://www.keyidentity.com
 .SH SEE ALSO
-python (1)
+\fBlinotp\fR(1)
 .SH BUGS
+.PP
 No known bugs.
-.SH AUTHOR
-KeyIdentity GmbH <linotp@keyidentity.com>
+.SH LinOTP
+.sp
+Part of the \fBlinotp\fR(1) suite.

@@ -72,7 +72,7 @@ COMMANDS = [ 'listtoken', 'inittoken', 'assigntoken',
 
 def usage():
     print("usage: %s --url=<url> --admin=<adminusername> --cert=<cert> --key=<rsakey> --command=<command> --version" % sys.argv[0])
-    print(""""  --url/-U     : The base url of the LinOTP server. Something like
+    print("""  --url/-U     : The base url of the LinOTP server. Something like
                  http://localhost:5000 or https://linotp:443
   --admin/-a   : If the admin interface of the LinOTP service requires authentication
                  you need to pass the username and will be asked for the password.

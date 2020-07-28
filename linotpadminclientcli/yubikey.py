@@ -33,13 +33,21 @@ try:
     import yubico.yubikey
     import yubico.yubikey_defs
     from yubico.yubikey import YubiKeyError
-except ImportError as  e:
+except ImportError as e:
     print("python yubikey module not available.")
-    print("please get it from https://github.com/Yubico/python-yubico if you want to enroll yubikeys")
+    print("please get it from https://github.com/Yubico/python-yubico if "
+          "you want to enroll yubikeys")
+    print(str(e))
+
+try:
+    from usb import USBError
+except ImportError as e:
+    print("Error importing usb module.")
+    print("You're either missing Python USB support (pyusb) or the libusb "
+          "library.")
     print(str(e))
 
 from time import sleep
-from usb import USBError
 import sys
 import re, os, binascii
 try:

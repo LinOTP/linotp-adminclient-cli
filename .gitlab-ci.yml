@@ -1,0 +1,11 @@
+include:
+  - ci/gitbox-ci.yml
+
+build:jessie:
+    extends: .build-jessie
+
+build:stretch:
+    extends: .build-stretch
+
+build:buster:
+    extends: .build-buster

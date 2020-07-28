@@ -342,7 +342,7 @@ class linotpclient(object):
 
             p = None
             if req_params:
-                p = urllib.parse.urlencode(req_params)
+                p = urllib.parse.urlencode(req_params).encode("utf-8")
 
             req_url = self.protocol + '://' + self.url + path
             f = urllib.request.urlopen(urllib.request.Request(req_url, p))
